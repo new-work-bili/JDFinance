@@ -1,0 +1,9 @@
+/* 设置布局模块 */
+@charset "UTF-8";
+
+@mixin flex($direction:colum,$display:block) {
+	display: if($display == block,flex,inline-flex);/* 类似三目运算法 */
+	flex-direction: $direction;
+	flex-wrap: wrap;
+	
+}

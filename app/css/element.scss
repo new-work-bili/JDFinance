@@ -1,0 +1,41 @@
+
+@import "./layout.scss";	/* 要使用layout的flex模板 */
+
+/* 按钮的默认样式 */
+@mixin btn($color:#fff,$size:14px,$bgcolor:#F04752,$radius:5px,$padding:5px) {	
+	background-color: $bgcolor;
+	border: 1px solid $bgcolor;
+	font-size: $size;
+	color: $color;
+	padding: $padding;
+	border-radius: $radius;
+	text-align: center;
+	line-height: 1;
+	display: inline-block;
+}
+/* 列表的flex样式 */
+@mixin list($direction:colum){
+	@include flex($direction)
+}
+/* 使用panel组件的默认样式 */
+@mixin panel($bgcolor:#fff,$padding:0,$margin:20px 0,$textPadding:0 32px,$color:#333,$height:112px,$fontSize:32xp){
+	padding: $padding;
+	margin: $margin;
+	background: $bgcolor;
+	>h4{
+		height: $height;
+		line-height: $height;
+		text-align: center;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		font-size: $fontSize;
+		color: $color;
+		padding: $textPadding
+	}
+	
+}
+
+
+
+

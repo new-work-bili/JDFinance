@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin"); //提取 CSS 到单个文件
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');	//压缩js
 
 
 module.exports = env =>{	
@@ -24,7 +25,8 @@ module.exports = env =>{
 			      NODE_ENV: '"production"'
 			    }
 			  }),
-			new ExtractTextPlugin("style.css")	//提取 CSS 到单个文件
+			new ExtractTextPlugin("style.css"),	//提取 CSS 到单个文件
+			new UglifyJsPlugin()	//压缩js，要写在生产模式里
 		)
 		
 	}	
@@ -49,10 +51,10 @@ module.exports = env =>{
 						cssModules: {
 							localIdentName: '[path][name]---[local]---[hash:base64:5]',
 							camelCase: true
-						},
+						},//下面用三目运算法把cssloaders的开发环境和生产环境区分开
 						loaders: env.production?{ //添加px转rem功能与提取 CSS 到单个文件的合并；因为在vue组件中要同时使用css和scss，所以同时对他两个进行设置																										//?后面的是一些配置的参数；如remUni值1rem=75px
-							css: ExtractTextPlugin.extract({use: 'css-loader!px2rem-loader?remUnit=40&remPrecision=8', fallback: 'vue-style-loader'}),
-							scss: ExtractTextPlugin.extract({use: 'css-loader!px2rem-loader?remUnit=40&remPrecision=8!sass-loader', fallback: 'vue-style-loader'})
+							css: ExtractTextPlugin.extract({use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8', fallback: 'vue-style-loader'}),
+							scss: ExtractTextPlugin.extract({use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8!sass-loader', fallback: 'vue-style-loader'})
 						}:{
 							css: 'vue-style-loader!css-loader!px2rem-loader?remUnit=40&remPrecision=8',
 							scss: 'vue-style-loader!css-loader!px2rem-loader?remUnit=40&remPrecision=8!sass-loader'
