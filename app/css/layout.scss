@@ -2,7 +2,8 @@
 @charset "UTF-8";
 
 @mixin flex($direction:colum,$display:block) {
-	display: if($display == block,flex,inline-flex);/* 类似三目运算法 */
+	// display: if($display == block,flex,inline-flex);/* 如果dispaly=block，那么dispaly=felx,否则dispaly=inline-flex */
+	display: flex;
 	flex-direction: $direction;
 	flex-wrap: wrap;
 	

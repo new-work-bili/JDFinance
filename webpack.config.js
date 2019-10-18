@@ -11,7 +11,7 @@ module.exports = env =>{
 		env={}
 	}	
 	let plugins = [	//定义一个插件变量，以便于push进来东西，下面要引用时直接用了；默认是开发环境
-		new CleanWebpackPlugin(['dist']), //用于删除/清除构建文件夹的webpack插件；为什么要使用它？？？ 
+		new CleanWebpackPlugin(['dist']), //用于删除/清除构建文件夹的webpack插件；
 		new HtmlWebpackPlugin({ //简化了HTML文件的创建，以便为你的webpack包提供服务
 			template: './app/views/index.html'
 		}),
@@ -31,7 +31,7 @@ module.exports = env =>{
 		
 	}	
 	return{	//箭头函数要return
-		entry: { //对不同文件类型使用不同的编译方法
+		entry: { //选择入口文件
 			app: './app/js/main.js'
 		},
 		devServer: {
@@ -74,8 +74,9 @@ module.exports = env =>{
 				'vue$': 'vue/dist/vue.esm.js' // 用 webpack 1 时需用 'vue/dist/vue.common.js' ； 为了解决运行环境问题bug
 			}
 		},
-		output: { //输出
+		output: { //打包后输出文件
 			filename: '[name].min.js', //打包后的名字，[name]指app
+			//路径，必须是绝对路径
 			path: path.resolve(__dirname, 'dist') //打包完后放到dist文件中，此文件是在生产环境下生成
 		}
 	}

@@ -49,7 +49,7 @@
 				box-sizing: border-box;
 				/* $在scss表示父级选择器，这里编译为.content .item :first-chlid 即选中的是.content中的第一个.item类 */
 				&:first-child{	
-					padding: 32px 20px;
+					padding: 50px 20px;
 					text-align: center;
 					border-right: 1px solid #ddd;
 					/* background: red; */
